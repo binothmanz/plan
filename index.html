@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>المعلم المتميز | الريادة والإبداع في التعليم الحديث 🎓</title>
+  <title>المعلم المتميز | التحضير الاحترافي للمعلمين</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -403,6 +403,11 @@
       color: var(--dark);
     }
     
+    .optional-label {
+      color: var(--gray);
+      font-weight: 500;
+    }
+    
     .form-control {
       width: 100%;
       padding: 14px;
@@ -429,6 +434,28 @@
       margin-top: 10px;
       font-size: 1.2rem;
       padding: 16px;
+    }
+    
+    /* Success Message */
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid #c3e6cb;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .success-message i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #28a745;
+    }
+    
+    .success-message h3 {
+      margin-bottom: 10px;
     }
     
     /* Footer */
@@ -696,15 +723,26 @@
         grid-template-columns: 1fr;
       }
       
+      /* إصلاح مشكلة تداخل زر اللغة في الجوال */
       .language-switcher {
-        top: 15px;
+        top: 80px; /* نقل إلى أسفل الشريط العلوي */
+        left: 50%;
+        transform: translateX(-50%);
         padding: 4px;
       }
       
       .lang-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 0.7rem;
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+      }
+      
+      .logo {
+        font-size: 1.5rem; /* تصغير العنوان في الجوال */
+      }
+      
+      .navbar {
+        padding: 0 10px;
       }
       
       .whatsapp-btn {
@@ -738,19 +776,42 @@
         grid-template-columns: 1fr;
       }
       
+      /* تعديلات إضافية للشاشات الصغيرة جداً */
       .language-switcher {
+        top: 85px; /* زيادة المسافة قليلاً */
         padding: 4px;
         gap: 3px;
+      }
+      
+      .lang-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.7rem;
+      }
+      
+      .logo {
+        font-size: 1.4rem; /* تصغير العنوان أكثر */
+      }
+      
+      .logo i {
+        font-size: 1.2rem;
+        margin-left: 8px;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .logo {
+        font-size: 1.3rem;
+      }
+      
+      .language-switcher {
+        top: 90px; /* زيادة المسافة أكثر للشاشات الصغيرة جداً */
       }
       
       .lang-btn {
         width: 32px;
         height: 32px;
         font-size: 0.65rem;
-      }
-      
-      .logo {
-        font-size: 1.5rem;
       }
     }
     
@@ -934,27 +995,27 @@
       </div>
       
       <div class="form-container">
-        <form action="https://formsubmit.co/binothmany@yahoo.com" method="POST">
+        <form id="order-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="name" id="label-name">الاسم الكامل</label>
+              <label for="name" id="label-name">الاسم الكامل <span class="required">*</span></label>
               <input type="text" id="name" name="name" class="form-control" required>
             </div>
             
             <div class="form-group">
-              <label for="email" id="label-email">البريد الإلكتروني</label>
-              <input type="email" id="email" name="email" class="form-control" required>
+              <label for="email" id="label-email" class="optional-label">البريد الإلكتروني (اختياري)</label>
+              <input type="email" id="email" name="email" class="form-control">
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group">
-              <label for="phone" id="label-phone">رقم التواصل</label>
+              <label for="phone" id="label-phone">رقم التواصل <span class="required">*</span></label>
               <input type="tel" id="phone" name="phone" class="form-control" required placeholder="مثال: 0501234567">
             </div>
             
             <div class="form-group">
-              <label for="role" id="label-role">الصفة</label>
+              <label for="role" id="label-role">الصفة <span class="required">*</span></label>
               <select id="role" name="role" class="form-control" required>
                 <option value="" id="option-role-default">اختر صفتك</option>
                 <option value="معلم" id="option-teacher-male">معلم</option>
@@ -967,12 +1028,12 @@
           
           <div class="form-row">
             <div class="form-group">
-              <label for="subject" id="label-subject">المادة</label>
+              <label for="subject" id="label-subject">المادة <span class="required">*</span></label>
               <input type="text" id="subject" name="subject" class="form-control" required>
             </div>
             
             <div class="form-group">
-              <label for="service" id="label-service">نوع الخدمة المطلوبة</label>
+              <label for="service" id="label-service">نوع الخدمة المطلوبة <span class="required">*</span></label>
               <select id="service" name="service" class="form-control" required>
                 <option value="" id="option-service-default">اختر الخدمة</option>
                 <option value="تحضير" id="option-lesson-prep">تحضير دروس</option>
@@ -986,12 +1047,29 @@
           </div>
           
           <div class="form-group">
-            <label for="notes" id="label-notes">ملاحظات إضافية</label>
-            <textarea id="notes" name="notes" class="form-control" id="notes-placeholder" placeholder="إذا كان لديك أي ملاحظات أو تفاصيل إضافية حول الخدمة المطلوبة..."></textarea>
+            <label for="notes" id="label-notes" class="optional-label">ملاحظات إضافية (اختياري)</label>
+            <textarea id="notes" name="notes" class="form-control" placeholder="إذا كان لديك أي ملاحظات أو تفاصيل إضافية حول الخدمة المطلوبة..."></textarea>
           </div>
           
-          <button type="submit" class="btn submit-btn" id="submit-btn">إرسال الطلب</button>
+          <div class="form-group" style="margin-top: 25px; text-align: center;">
+            <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 15px;">
+              <i class="fas fa-info-circle" style="color: var(--primary); margin-left: 5px;"></i>
+              <span id="form-info">سيتم إرسال طلبك مباشرة إلى الواتساب</span>
+            </p>
+          </div>
+          
+          <button type="submit" class="btn submit-btn" id="submit-btn">إرسال الطلب عبر الواتساب</button>
         </form>
+        
+        <div class="success-message" id="success-message">
+          <i class="fas fa-check-circle"></i>
+          <h3 id="success-title">تم فتح الواتساب!</h3>
+          <p id="success-text">تم إعداد رسالتك في الواتساب. يرجى مراجعة الرسالة وإرسالها بالنقر على زر الإرسال في تطبيق الواتساب.</p>
+          <p style="margin-top: 15px; font-size: 0.9rem;">
+            <i class="fas fa-lightbulb" style="color: var(--secondary); margin-left: 5px;"></i>
+            <span id="success-tip">إذا لم يفتح الواتساب تلقائياً، يرجى النقر على زر الواتساب في أسفل الصفحة</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -1095,12 +1173,12 @@
         // Contact Form
         "contact-title": "اطلب خدمتك الآن",
         "label-name": "الاسم الكامل",
-        "label-email": "البريد الإلكتروني",
+        "label-email": "البريد الإلكتروني (اختياري)",
         "label-phone": "رقم التواصل",
         "label-role": "الصفة",
         "label-subject": "المادة",
         "label-service": "نوع الخدمة المطلوبة",
-        "label-notes": "ملاحظات إضافية",
+        "label-notes": "ملاحظات إضافية (اختياري)",
         "option-role-default": "اختر صفتك",
         "option-teacher-male": "معلم",
         "option-teacher-female": "معلمة",
@@ -1113,8 +1191,13 @@
         "option-supervision": "إشراف تربوي",
         "option-custom-programs": "برامج تدريبية حسب الطلب",
         "option-treatment-plans": "خطط علاجية للطلاب الضعاف",
-        "notes-placeholder": "إذا كان لديك أي ملاحظات أو تفاصيل إضافية حول الخدمة المطلوبة...",
-        "submit-btn": "إرسال الطلب",
+        "form-info": "سيتم إرسال طلبك مباشرة إلى الواتساب",
+        "submit-btn": "إرسال الطلب عبر الواتساب",
+        
+        // Success Message
+        "success-title": "تم فتح الواتساب!",
+        "success-text": "تم إعداد رسالتك في الواتساب. يرجى مراجعة الرسالة وإرسالها بالنقر على زر الإرسال في تطبيق الواتساب.",
+        "success-tip": "إذا لم يفتح الواتساب تلقائياً، يرجى النقر على زر الواتساب في أسفل الصفحة",
         
         // Footer
         "footer-title": "المعلم المتميز",
@@ -1135,7 +1218,7 @@
         "whatsapp-text": "تواصل معنا",
         
         // Page Title
-        "page-title": "المعلم المتميز | الريادة والإبداع في التعليم الحديث 🎓"
+        "page-title": "المعلم المتميز | التحضير الاحترافي للمعلمين"
       },
       en: {
         // Navigation
@@ -1179,12 +1262,12 @@
         // Contact Form
         "contact-title": "Order Your Service Now",
         "label-name": "Full Name",
-        "label-email": "Email Address",
+        "label-email": "Email (Optional)",
         "label-phone": "Contact Number",
         "label-role": "Role",
         "label-subject": "Subject",
         "label-service": "Required Service Type",
-        "label-notes": "Additional Notes",
+        "label-notes": "Additional Notes (Optional)",
         "option-role-default": "Select Your Role",
         "option-teacher-male": "Male Teacher",
         "option-teacher-female": "Female Teacher",
@@ -1197,8 +1280,13 @@
         "option-supervision": "Educational Supervision",
         "option-custom-programs": "Custom Training Programs",
         "option-treatment-plans": "Remedial Plans for Weak Students",
-        "notes-placeholder": "If you have any additional notes or details about the required service...",
-        "submit-btn": "Submit Request",
+        "form-info": "Your request will be sent directly to WhatsApp",
+        "submit-btn": "Send Request via WhatsApp",
+        
+        // Success Message
+        "success-title": "WhatsApp Opened!",
+        "success-text": "Your message has been prepared in WhatsApp. Please review the message and send it by clicking the send button in the WhatsApp app.",
+        "success-tip": "If WhatsApp didn't open automatically, please click the WhatsApp button at the bottom of the page",
         
         // Footer
         "footer-title": "Distinguished Teacher",
@@ -1344,25 +1432,95 @@
       observer.observe(el);
     });
     
-    // Form submission feedback
-    const contactForm = document.querySelector('form');
-    contactForm.addEventListener('submit', function(e) {
+    // Form submission - Send to WhatsApp only
+    const orderForm = document.getElementById('order-form');
+    const successMessage = document.getElementById('success-message');
+    
+    orderForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Validate required fields
+      const requiredFields = ['name', 'phone', 'role', 'subject', 'service'];
+      let isValid = true;
+      
+      requiredFields.forEach(fieldName => {
+        const field = this.elements[fieldName];
+        if (!field.value.trim()) {
+          isValid = false;
+          field.style.borderColor = '#dc3545';
+          
+          // Reset border color after 2 seconds
+          setTimeout(() => {
+            field.style.borderColor = '';
+          }, 2000);
+        }
+      });
+      
+      if (!isValid) {
+        alert(currentLang === 'ar' ? 'يرجى ملء الحقول الإلزامية المميزة بـ *' : 'Please fill in all required fields marked with *');
+        return;
+      }
+      
+      // Get form data
+      const formData = new FormData(this);
+      const formDataObj = Object.fromEntries(formData.entries());
+      
+      // Get submit button
       const submitBtn = this.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
       
-      submitBtn.textContent = currentLang === 'ar' ? 'جاري الإرسال...' : 'Sending...';
+      // Change button text
+      submitBtn.textContent = currentLang === 'ar' ? 'جاري فتح الواتساب...' : 'Opening WhatsApp...';
       submitBtn.disabled = true;
       
-      // Reset button after 5 seconds (in case of error)
+      // Prepare WhatsApp message
+      const whatsappMessage = currentLang === 'ar' 
+        ? `📋 *طلب خدمة جديد من موقع المعلم المتميز*\n\n` +
+          `👤 *الاسم:* ${formDataObj.name}\n` +
+          `📞 *رقم الهاتف:* ${formDataObj.phone}\n` +
+          (formDataObj.email ? `📧 *البريد الإلكتروني:* ${formDataObj.email}\n` : '') +
+          `🎓 *الصفة:* ${formDataObj.role}\n` +
+          `📚 *المادة:* ${formDataObj.subject}\n` +
+          `🛠️ *نوع الخدمة:* ${formDataObj.service}\n` +
+          (formDataObj.notes ? `📝 *ملاحظات إضافية:* ${formDataObj.notes}` : '')
+        : `📋 *New Service Request from Distinguished Teacher Website*\n\n` +
+          `👤 *Name:* ${formDataObj.name}\n` +
+          `📞 *Phone Number:* ${formDataObj.phone}\n` +
+          (formDataObj.email ? `📧 *Email:* ${formDataObj.email}\n` : '') +
+          `🎓 *Role:* ${formDataObj.role}\n` +
+          `📚 *Subject:* ${formDataObj.subject}\n` +
+          `🛠️ *Service Type:* ${formDataObj.service}\n` +
+          (formDataObj.notes ? `📝 *Additional Notes:* ${formDataObj.notes}` : '');
+      
+      // Encode WhatsApp message for URL
+      const encodedWhatsAppMessage = encodeURIComponent(whatsappMessage);
+      const whatsappUrl = `https://wa.me/967772551220?text=${encodedWhatsAppMessage}`;
+      
+      // Open WhatsApp
+      window.open(whatsappUrl, '_blank');
+      
+      // Show success message
       setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }, 5000);
+        successMessage.style.display = 'block';
+        orderForm.reset();
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 2000);
+        
+        // Hide success message after 8 seconds
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 8000);
+      }, 1000);
     });
     
     // Initialize language from localStorage or default to Arabic
     const savedLang = localStorage.getItem('preferred-language') || 'ar';
     setLanguage(savedLang);
   </script>
-</body>
+</head>
+<body>
 </html>
