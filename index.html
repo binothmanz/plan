@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>المعلم المتميز | الريادة والإبداع في التعليم الحديث </title>
+  <title>المعلم المتميز | الريادة والإبداع في التعليم الحديث 🎓</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -406,6 +406,10 @@
     .optional-label {
       color: var(--gray);
       font-weight: 500;
+    }
+    
+    .required {
+      color: #dc3545;
     }
     
     .form-control {
@@ -879,7 +883,7 @@
   <section class="hero" id="home">
     <div class="container">
       <h1 class="fade-in" id="hero-title">المعلم المتميز</h1>
-      <p class="fade-in delay-1" id="hero-subtitle">التحضير الجيد هو سر نجاح الحصة… دعنا نساعدك على توفير الوقت وتحقيق أفضل النتائج 🎯</p>
+      <p class="fade-in delay-1" id="hero-subtitle">الريادة والإبداع في التعليم الحديث 🎓</p>
       <div class="hero-btns fade-in delay-2">
         <a href="#services" class="btn" id="btn-services">اكتشف خدماتنا</a>
         <a href="#contact" class="btn btn-secondary" id="btn-order">اطلب الخدمة الآن</a>
@@ -1142,7 +1146,7 @@
         
         // Hero Section
         "hero-title": "المعلم المتميز",
-        "hero-subtitle": "التحضير الجيد هو سر نجاح الحصة… دعنا نساعدك على توفير الوقت وتحقيق أفضل النتائج 🎯",
+        "hero-subtitle": "الريادة والإبداع في التعليم الحديث 🎓",
         "btn-services": "اكتشف خدماتنا",
         "btn-order": "اطلب الخدمة الآن",
         
@@ -1218,7 +1222,7 @@
         "whatsapp-text": "تواصل معنا",
         
         // Page Title
-        "page-title": "المعلم المتميز | الريادة والإبداع في التعليم الحديث"
+        "page-title": "المعلم المتميز | الريادة والإبداع في التعليم الحديث 🎓"
       },
       en: {
         // Navigation
@@ -1231,7 +1235,7 @@
         
         // Hero Section
         "hero-title": "Distinguished Teacher",
-        "hero-subtitle": "Good preparation is the secret to a successful class… Let us help you save time and achieve the best results 🎯",
+        "hero-subtitle": "Leadership and Innovation in Modern Education 🎓",
         "btn-services": "Discover Our Services",
         "btn-order": "Order Service Now",
         
@@ -1307,7 +1311,7 @@
         "whatsapp-text": "Contact Us",
         
         // Page Title
-        "page-title": "Distinguished Teacher | Professional Preparation for Teachers"
+        "page-title": "Distinguished Teacher | Leadership and Innovation in Modern Education 🎓"
       }
     };
 
@@ -1473,24 +1477,24 @@
       submitBtn.textContent = currentLang === 'ar' ? 'جاري فتح الواتساب...' : 'Opening WhatsApp...';
       submitBtn.disabled = true;
       
-      // Prepare WhatsApp message
+      // Prepare WhatsApp message (email is optional - can be empty)
       const whatsappMessage = currentLang === 'ar' 
         ? `📋 *طلب خدمة جديد من موقع المعلم المتميز*\n\n` +
           `👤 *الاسم:* ${formDataObj.name}\n` +
           `📞 *رقم الهاتف:* ${formDataObj.phone}\n` +
-          (formDataObj.email ? `📧 *البريد الإلكتروني:* ${formDataObj.email}\n` : '') +
+          (formDataObj.email && formDataObj.email.trim() !== '' ? `📧 *البريد الإلكتروني:* ${formDataObj.email}\n` : '') +
           `🎓 *الصفة:* ${formDataObj.role}\n` +
           `📚 *المادة:* ${formDataObj.subject}\n` +
           `🛠️ *نوع الخدمة:* ${formDataObj.service}\n` +
-          (formDataObj.notes ? `📝 *ملاحظات إضافية:* ${formDataObj.notes}` : '')
+          (formDataObj.notes && formDataObj.notes.trim() !== '' ? `📝 *ملاحظات إضافية:* ${formDataObj.notes}` : '')
         : `📋 *New Service Request from Distinguished Teacher Website*\n\n` +
           `👤 *Name:* ${formDataObj.name}\n` +
           `📞 *Phone Number:* ${formDataObj.phone}\n` +
-          (formDataObj.email ? `📧 *Email:* ${formDataObj.email}\n` : '') +
+          (formDataObj.email && formDataObj.email.trim() !== '' ? `📧 *Email:* ${formDataObj.email}\n` : '') +
           `🎓 *Role:* ${formDataObj.role}\n` +
           `📚 *Subject:* ${formDataObj.subject}\n` +
           `🛠️ *Service Type:* ${formDataObj.service}\n` +
-          (formDataObj.notes ? `📝 *Additional Notes:* ${formDataObj.notes}` : '');
+          (formDataObj.notes && formDataObj.notes.trim() !== '' ? `📝 *Additional Notes:* ${formDataObj.notes}` : '');
       
       // Encode WhatsApp message for URL
       const encodedWhatsAppMessage = encodeURIComponent(whatsappMessage);
@@ -1521,6 +1525,5 @@
     const savedLang = localStorage.getItem('preferred-language') || 'ar';
     setLanguage(savedLang);
   </script>
-</head>
-<body>
+</body>
 </html>
